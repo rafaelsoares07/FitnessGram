@@ -18,7 +18,8 @@ import { Input } from "@/components/ui/input"
 import { SignUpValidation } from "@/lib/validation"
 import Loader from "@/components/shared/Loader"
 import { Link } from "react-router-dom"
-import { createUserAccount } from "@/lib/appwrite/api"
+import { createSessionUser, createUserAccount, detailsAccount } from "@/lib/appwrite/api"
+import { account } from "@/lib/appwrite/config"
 
 export default function SignUpForm() {
   const [loading,setLoading] = React.useState(false)
@@ -39,6 +40,15 @@ export default function SignUpForm() {
       const newUser = await createUserAccount(values)
       setLoading(false)
       console.log(newUser)
+
+      const session = await createSessionUser(values)
+
+      const a = await detailsAccount()
+
+      console.log(a)
+
+      console.log(session)
+
     }catch(error){
       console.log(error)
       console.log("caiu aqui")
@@ -50,7 +60,7 @@ export default function SignUpForm() {
     <Form {...form}>
 
       <div className="sm:w-420 flex-center flex-col">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp_5WRz1jvLEfqj3QXFB2GQITbein1HdkQozr7BxJfwX_yJ2UMCxbX58kKSypaEfhP4Zs&usqp=CAU" alt="" srcset="" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp_5WRz1jvLEfqj3QXFB2GQITbein1HdkQozr7BxJfwX_yJ2UMCxbX58kKSypaEfhP4Zs&usqp=CAU"  />
         <h3 className="font-bold italic text-center md:h2-bold ">Create New Account</h3>
         <p className="text-center mt-1">Cria sua conta na nossa rede social</p>
 

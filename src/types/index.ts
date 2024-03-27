@@ -4,3 +4,8 @@ export type INewUser ={
     username:string,
     password:string
 }
+
+export type ISessionUser = {
+    email:string,
+    password:string
+}
